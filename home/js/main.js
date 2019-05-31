@@ -28,7 +28,7 @@ var is_log = false;
 
 
 
-//////////////////////////////header////////////////
+//////////////////////////////header/////////////////////////////////////////////
 
 var navSlide = function () {
     var menu_mobile = document.querySelector(".menu-mobile");
@@ -52,7 +52,7 @@ navSlide();
 
 
 
-////////////////////////slajder - json z obrazkami/////////////
+////////////////////////slajder///////////////////////////////////////////////////
 function home() {
     container.innerHTML = "";
 
@@ -95,34 +95,34 @@ function home() {
                 let current = 0;
 
 
-                //////czysci obrazki
+                //////czysci obrazki/////////////////////////////////////////////
                 function reset() {
                     for (i = 0; i < slider.length; i++) {
                         slider[i].style.display = 'none';
                     }
                 }
 
-                //////zaczyna slajdy
+                //////zaczyna ////////////////////////////////////////////////////
                 function start_slider() {
                     reset();
                     slider[0].style.display = 'block';
                 }
 
-                ////pokazuje co wczesniej
+                ////pokazuje co wczesniej////////////////////////////////////////
                 function slide_left() {
                     reset();
                     slider[current - 1].style.display = 'block';
                     current--;
                 }
 
-                ////////prawy przycisk dalej
+                ////////prawy przycisk dalej///////////////////////////////////
                 function slide_right() {
                     reset();
                     slider[current + 1].style.display = 'block';
                     current++;
                 }
 
-                ///////click na lewa strzalke
+                ///////click na lewa strzalke////////////////////////////////
 
                 arrowLeft.addEventListener('click', function () {
                     if (current === 0) {
@@ -144,7 +144,7 @@ function home() {
     init();
 }
 
-///////////////////////kina z filmami////////////////
+///////////////////////kina z filmami////////////////////////////////////////////
 function movies() {
     container.innerHTML = "";
     // var nav = document.querySelector(".nav-links");
@@ -201,7 +201,7 @@ function movies() {
 
 
 
-////////////////////////////opisy filmow z dniai i godzinami//////////
+////////////////////////////opisy filmow z dniami i godzinami//////////////////////
 function movies_desc(sec) {
     container.innerHTML = "";
     function init_films() {
@@ -286,7 +286,7 @@ function movies_desc(sec) {
                     }
                 }
 
-                ///////////////// scrollowaniedo odpowiedniej sekcji //////////////////////
+                ///////////////// scrollowanie do odpowiedniej sekcji //////////////////////
 
                 var scroll_section = document.getElementById("films" + sec);
                 scroll_section.scrollIntoView({
@@ -304,115 +304,113 @@ function movies_desc(sec) {
 
 
 
-//////krzesla//////////////////////////
+/////////////////////////////wybór miejsc/////////////////////////////////////////////////
 
-var rows;
-var columns;
-function reservation() {
+// var rows;
+// var columns;
+// function reservation() {
 
-    container.innerHTML = "";
-
-
-    function init_films() {
-        loadFilms()
-            .then(function () {
-
-                function change_cinema() {
-                    var s = document.getElementById("select_m").innerHTML = "";
-                    var select_cinema_options = document.getElementById("select_cinema_options").selectedIndex;
-                    var select_movie = document.createElement("select");
-                    select_movie.setAttribute("class", "selection");
-                    select_m.appendChild(select_movie);
-
-                    for (i = 0; i < filmy.Looknij[select_cinema_options].films.length; i++) {
-
-                        var select_movie_options = document.createElement("option");
-                        select_movie_options.setAttribute("class", "options");
-                        select_movie_options.innerHTML = filmy.Looknij[select_cinema_options].films[i].name;
-                        select_movie.appendChild(select_movie_options);
-                    }
-                    rows = filmy.Looknij[select_cinema_options].row;
-                    columns = filmy.Looknij[select_cinema_options].columns;
-                    create_sits();
-                };
-
-                var select = document.createElement("div");
-                select.setAttribute("id", "select");
-                container.appendChild(select);
-                var select_m = document.createElement("div");
-                select_m.setAttribute("id", "select_m");
-                container.appendChild(select_m);
-
-                var select_cinema = document.createElement("select");
-                select_cinema.setAttribute("class", "selection");
-                select_cinema.setAttribute("id", "select_cinema_options");
-                select_cinema.onchange = change_cinema;
+//     container.innerHTML = "";
 
 
+//     function init_films() {
+//         loadFilms()
+//             .then(function () {
 
-                for (i = 0; i < filmy.Looknij.length; i++) {
+//                 function change_cinema() {
+//                     var s = document.getElementById("select_m").innerHTML = "";
+//                     var select_cinema_options = document.getElementById("select_cinema_options").selectedIndex;
+//                     var select_movie = document.createElement("select");
+//                     select_movie.setAttribute("class", "selection");
+//                     select_m.appendChild(select_movie);
 
-                    var select_options = document.createElement("option");
-                    select_options.setAttribute("class", "options");
-                    select_options.innerHTML = filmy.Looknij[i].location;
-                    select_cinema.appendChild(select_options);
+//                     for (i = 0; i < filmy.Looknij[select_cinema_options].films.length; i++) {
 
+//                         var select_movie_options = document.createElement("option");
+//                         select_movie_options.setAttribute("class", "options");
+//                         select_movie_options.innerHTML = filmy.Looknij[select_cinema_options].films[i].name;
+//                         select_movie.appendChild(select_movie_options);
+//                     }
+//                     rows = filmy.Looknij[select_cinema_options].row;
+//                     columns = filmy.Looknij[select_cinema_options].columns;
+//                     create_sits();
+//                 };
 
-                }
+//                 var select = document.createElement("div");
+//                 select.setAttribute("id", "select");
+//                 container.appendChild(select);
+//                 var select_m = document.createElement("div");
+//                 select_m.setAttribute("id", "select_m");
+//                 container.appendChild(select_m);
 
-
-                select.appendChild(select_cinema);
-                var places = document.createElement("div");
-                places.setAttribute("id", "places");
-                container.appendChild(places);
-
-                function create_sits() {
-
-                    places.innerHTML = "";
-
-                    // var button_res = document.getElementById("button_res");
-                    // button_res.onclick = button_onclick();
-
-
-                    for (j = 0; j < rows; j++) {
-
-                        var para_parent = document.createElement("div");
-                        para_parent.setAttribute("class", "divy");
-                        // let para_parent = document.getElementsByClassName("divy");
-                        var divy = document.getElementsByClassName("divy");
-                        // divy.style.color ="red";
-                        for (i = 0; i < columns; i++) {
-
-                            var para = document.createElement("div");
-                            para.setAttribute('class', 'sit');
-                            var img = document.createElement("img");
-                            img.setAttribute("src", "chair.png");
-                            img.setAttribute("id", "img_chair");
-
-                            para.appendChild(img);
-                            var info = "Rząd: " + (j + 1) + " Miejsce: " + (i + 1) + " ";
+//                 var select_cinema = document.createElement("select");
+//                 select_cinema.setAttribute("class", "selection");
+//                 select_cinema.setAttribute("id", "select_cinema_options");
+//                 select_cinema.onchange = change_cinema;
 
 
-                            var tooltip_node = document.createElement("span");
-                            tooltip_node.setAttribute("class", "tooltip");
-                            tooltip_node.innerText = info;
 
-                            para.appendChild(tooltip_node);
-                            para_parent.appendChild(para);
-
-
-                        }
-                        places.appendChild(para_parent);
-                    }
-
-                }
-            }
-            )
-    }
+//                 for (i = 0; i < filmy.Looknij.length; i++) {
+//                     var select_options = document.createElement("option");
+//                     select_options.setAttribute("class", "options");
+//                     select_options.innerHTML = filmy.Looknij[i].location;
+//                     select_cinema.appendChild(select_options);
+//                 }
 
 
-    init_films();
-}
+//                 select.appendChild(select_cinema);
+                
+//                 var places = document.createElement("div");
+//                 places.setAttribute("id", "places");
+                
+
+//                 function create_sits() {
+
+//                     places.innerHTML = "";
+
+//                     // var button_res = document.getElementById("button_res");
+//                     // button_res.onclick = button_onclick();
+
+
+//                     for (j = 0; j < rows; j++) {
+
+//                         var para_parent = document.createElement("div");
+//                         para_parent.setAttribute("class", "divy");
+//                         // let para_parent = document.getElementsByClassName("divy");
+//                         var divy = document.getElementsByClassName("divy");
+//                         // divy.style.color ="red";
+//                         for (i = 0; i < columns; i++) {
+
+//                             var para = document.createElement("div");
+//                             para.setAttribute('class', 'sit');
+//                             var img = document.createElement("img");
+//                             img.setAttribute("src", "chair.png");
+//                             img.setAttribute("id", "img_chair");
+
+//                             para.appendChild(img);
+//                             var info = "Rząd: " + (j + 1) + " Miejsce: " + (i + 1) + " ";
+
+
+//                             var tooltip_node = document.createElement("span");
+//                             tooltip_node.setAttribute("class", "tooltip");
+//                             tooltip_node.innerText = info;
+
+//                             para.appendChild(tooltip_node);
+//                             para_parent.appendChild(para);
+
+
+//                         }
+//                         places.appendChild(para_parent);
+//                     }
+
+//                 }
+//             }
+//             )
+//     }
+
+
+//     init_films();
+// }
 
 function spec_reservation(idc, idf, idd) {
     if (is_log == false) {
@@ -422,6 +420,7 @@ function spec_reservation(idc, idf, idd) {
         container.innerHTML = "";
         var rows = filmy.Looknij[idc].row;
         var columns = filmy.Looknij[idc].columns;
+        var screen_width = columns * 25;
         var sits_control = [];
         var get_sits;
         var sit_to_send = {};
@@ -473,6 +472,14 @@ function spec_reservation(idc, idf, idd) {
                         // var button_res = document.getElementById("button_res");
                         // button_res.onclick = button_onclick();
 
+                        var screen = document.createElement("div");
+                        screen.setAttribute("id", "screen");
+                        screen.style.width = screen_width+"px";
+                        var screen_img = document.createElement("img");
+                        screen_img.setAttribute("src", "img/screen.png");
+                        screen_img.setAttribute("id", "img_screen");
+                        screen.appendChild(screen_img);
+                        places.appendChild(screen);
 
                         for (j = 0; j < rows; j++) {
 
@@ -518,10 +525,50 @@ function spec_reservation(idc, idf, idd) {
                         }
 
                     }
+                    
+                    
+                    var div_btn = document.createElement("div");
+                    div_btn.setAttribute("id", "div_btn");
+
                     var save_btn = document.createElement("button");
+                    save_btn.setAttribute("id", "save_btn");
                     save_btn.onclick = save_sits;
                     save_btn.innerHTML = "Rezerwuj";
-                    container.appendChild(save_btn);
+
+                    var legend = document.createElement("div");
+                    legend.setAttribute("id", "legend");
+
+                    var legend_res = document.createElement("div");
+                    legend_res.setAttribute("id", "legend_res");
+
+                    var reserve = document.createElement("div");
+                    reserve.setAttribute("id", "reserve");
+                    reserve.innerHTML="Rezerwujesz";
+
+                    var legend_col = document.createElement("div");
+                    legend_col.setAttribute("id", "legend_col");
+
+                    var reserved = document.createElement("div");
+                    reserved.setAttribute("id", "reserved");
+                    reserved.innerHTML="Zarezerwowane";
+
+                    var green = document.createElement("div");
+                    green.setAttribute("id", "green");
+
+                    var yellow = document.createElement("div");
+                    yellow.setAttribute("id", "yellow");
+
+                    container.appendChild(div_btn);
+                    div_btn.appendChild(save_btn);
+                    div_btn.appendChild(legend);
+                    legend.appendChild(legend_res);
+                    legend.appendChild(legend_col);
+                    legend_res.appendChild(reserve);
+                    legend_res.appendChild(reserved);
+                    legend_col.appendChild(green);
+                    legend_col.appendChild(yellow);
+                   
+                   
                     
 
                     function save_sits() {
@@ -574,7 +621,7 @@ function spec_reservation(idc, idf, idd) {
 }
 
 
-//////////////logowanie///////////
+///////////////////////////////////////////////logowanie/////////////////////////////////
 
 var users;
 function loadUsers() {
@@ -668,6 +715,7 @@ function log_in() {
 
     var message = document.createElement("div");
     var message_must = document.createElement("div");
+    message_must.setAttribute("id", "message_must");
     message_must.innerHTML = "Hasło musi zawierać: ";
     var special = document.createElement("p");
     special.setAttribute("class", "invalid");
@@ -747,10 +795,14 @@ function log_in() {
             length.classList.add("invalid");
         }
     }
+
+password.addEventListener("keyup", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("btn_log").click();
+    }
+});
 };
-
-
-
 
 
 
@@ -788,5 +840,5 @@ function log_in() {
 // }
 
 
-/////////////onload////////////
+/////////////////////////////////////////////onload////////////////////////////////////////
 window.onload = home();
