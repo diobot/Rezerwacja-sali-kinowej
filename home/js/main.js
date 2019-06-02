@@ -359,10 +359,10 @@ function movies_desc(sec) {
 
 
 //                 select.appendChild(select_cinema);
-                
+
 //                 var places = document.createElement("div");
 //                 places.setAttribute("id", "places");
-                
+
 
 //                 function create_sits() {
 
@@ -431,11 +431,11 @@ function spec_reservation(idc, idf, idd) {
             loadReservations()
                 .then(function () {
                     var head = document.createElement("div");
-                    head.setAttribute("id","head");
+                    head.setAttribute("id", "head");
                     container.appendChild(head);
 
                     var title_res = document.createElement("div");
-                    title_res.setAttribute("id","title_res");
+                    title_res.setAttribute("id", "title_res");
                     head.appendChild(title_res);
 
                     var city = document.createElement("h1");
@@ -474,7 +474,7 @@ function spec_reservation(idc, idf, idd) {
 
                         var screen = document.createElement("div");
                         screen.setAttribute("id", "screen");
-                        screen.style.width = screen_width+"px";
+                        screen.style.width = screen_width + "px";
                         var screen_img = document.createElement("img");
                         screen_img.setAttribute("src", "img/screen.png");
                         screen_img.setAttribute("id", "img_screen");
@@ -525,8 +525,8 @@ function spec_reservation(idc, idf, idd) {
                         }
 
                     }
-                    
-                    
+
+
                     var div_btn = document.createElement("div");
                     div_btn.setAttribute("id", "div_btn");
 
@@ -543,14 +543,14 @@ function spec_reservation(idc, idf, idd) {
 
                     var reserve = document.createElement("div");
                     reserve.setAttribute("id", "reserve");
-                    reserve.innerHTML="Rezerwujesz";
+                    reserve.innerHTML = "Rezerwujesz";
 
                     var legend_col = document.createElement("div");
                     legend_col.setAttribute("id", "legend_col");
 
                     var reserved = document.createElement("div");
                     reserved.setAttribute("id", "reserved");
-                    reserved.innerHTML="Zarezerwowane";
+                    reserved.innerHTML = "Zarezerwowane";
 
                     var green = document.createElement("div");
                     green.setAttribute("id", "green");
@@ -567,9 +567,9 @@ function spec_reservation(idc, idf, idd) {
                     legend_res.appendChild(reserved);
                     legend_col.appendChild(green);
                     legend_col.appendChild(yellow);
-                   
-                   
-                    
+
+
+
 
                     function save_sits() {
                         sits_control = document.getElementsByClassName("sit_chosen");
@@ -587,9 +587,9 @@ function spec_reservation(idc, idf, idd) {
                         localStorage.setItem("res", JSON.stringify(rezerwacja));
 
                         var sits_control_price = document.getElementsByClassName("sit_chosen");
-                        for(i=0;i<sits_control_price.length;i++){
-                        var sum = sits_control_price[i].getAttribute("value");
-                        var suma = sum*sits_control_price.length;
+                        for (i = 0; i < sits_control_price.length; i++) {
+                            var sum = sits_control_price[i].getAttribute("value");
+                            var suma = sum * sits_control_price.length;
                         }
                         summary.innerHTML = "Kwota do zapłaty: " + suma + "pln";
                     }
@@ -606,9 +606,9 @@ function spec_reservation(idc, idf, idd) {
                             var change = g.reservation[n].films[f].days[t].hours[r].reserved_sits[0][i];
                             console.log(change);
                             var unable_chairs = document.getElementById(change);
-                            unable_chairs.style.backgroundColor="yellow"
-                            unable_chairs.style.cursor="not-allowed"
-                            unable_chairs.setAttribute( "onClick", "" );
+                            unable_chairs.style.backgroundColor = "yellow"
+                            unable_chairs.style.cursor = "not-allowed"
+                            unable_chairs.setAttribute("onClick", "");
                         }
                     }
                     get_res();
@@ -640,11 +640,25 @@ function send() {
             var login = document.getElementById("login").value;
             var password = document.getElementById("password").value;
 
-            for (i = 0; i < users.users.length; i++) {
-                if (login == users.users[i].username && password == users.users[i].password) {
-                    is_log = true;
-                }
-            }
+            // for (i = 0; i < users.users.length; i++) {
+            //     if (login == users.users[i].username && password == users.users[i].password) {
+            //         is_log = true;
+
+            //     }
+            // }
+
+            fetch('/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    login: login.value,
+                    password: password.value
+                })
+            }).then(JSON.parse(res)).then(is_log = res.is_log)
+
 
             function countdown(elementName, minutes, seconds) {
                 var element, endTime, hours, mins, msLeft, time;
@@ -796,12 +810,12 @@ function log_in() {
         }
     }
 
-password.addEventListener("keyup", function(event) {
-    if(event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("btn_log").click();
-    }
-});
+    password.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("btn_log").click();
+        }
+    });
 };
 
 
