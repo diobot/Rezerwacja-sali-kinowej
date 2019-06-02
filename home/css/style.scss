@@ -262,10 +262,6 @@ nav {
 
 //////////////filmy/////////////////////////////////////////////////////////////////////
 
-.container {
-  width: 100%;
-  position: relative;
-}
 
 .films {
   display: inline-flex;
@@ -310,15 +306,14 @@ nav {
   margin-top: auto;
   grid-template-columns: col2-start;
   grid-template-rows: row2-start;
+  
 }
 
 #date {
-  display: grid;
+    display: grid;
   grid-template-columns: col2-start;
   grid-template-rows: row3-start;
   grid-template-columns: [col1-start] auto [col2-start] auto [col3-start] auto [col4-start] auto [col5-start] auto [col6-start] auto [col7-start] auto  [col7-end];
- 
-
 }
 
 .days_hours {
@@ -558,25 +553,25 @@ button {
 }
 
 @media screen and (max-width: $width1) {
-  #container {
+  #content_res {
     transform: $transform1;
   }
 }
 
 @media screen and (max-width: $width2) {
-  #container {
+  #content_res {
     transform: $transform2;
   }
 }
 
 @media screen and (max-width: $width3) {
-  #container {
+  #content_res {
     transform: $transform3;
   }
 }
 
 @media screen and (max-width: $width4) {
-  #container {
+  #content_res {
     transform: $transform4;
   }
 }

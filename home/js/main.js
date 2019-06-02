@@ -430,9 +430,13 @@ function spec_reservation(idc, idf, idd) {
             loadFilms()
             loadReservations()
                 .then(function () {
+                    var content_res = document.createElement("div");
+                    content_res.setAttribute("id","content_res");
+                    container.appendChild(content_res);
+
                     var head = document.createElement("div");
                     head.setAttribute("id", "head");
-                    container.appendChild(head);
+                    content_res.appendChild(head);
 
                     var title_res = document.createElement("div");
                     title_res.setAttribute("id", "title_res");
@@ -457,11 +461,11 @@ function spec_reservation(idc, idf, idd) {
                     var summary = document.createElement("div");
                     summary.setAttribute("id", "summary");
                     summary.innerHTML = "Koszyk jest pusty.";
-                    head.appendChild(summary);
+                    content_res.appendChild(summary);
 
                     var places = document.createElement("div");
                     places.setAttribute("id", "places");
-                    container.appendChild(places);
+                    content_res.appendChild(places);
 
                     create_sits();
 
@@ -640,25 +644,30 @@ function send() {
             var login = document.getElementById("login").value;
             var password = document.getElementById("password").value;
 
+            var reg = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/i;
+                   if(!login.match(reg)){
+                       alert("Wpisz prawidłowy email!")
+                   }else{
+
             // for (i = 0; i < users.users.length; i++) {
             //     if (login == users.users[i].username && password == users.users[i].password) {
             //         is_log = true;
 
             //     }
-            // }
+            // }      nie udane sprawdzanie logowania...
 
-            fetch('/login', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    login: login.value,
-                    password: password.value
-                })
-            }).then(JSON.parse(res)).then(is_log = res.is_log)
-
+            // fetch('/login', {                                        // do poprawy
+            //     method: 'post',                                      
+            //     headers: {                                           
+            //         'Accept': 'application/json',                    
+            //         'Content-Type': 'application/json'               
+            //     },
+            //     body: JSON.stringify({
+            //         login: login.value,
+            //         password: password.value
+            //     })
+            // }).then(JSON.parse(res)).then(is_log = res.is_log)
+                    is_log = true;
 
             function countdown(elementName, minutes, seconds) {
                 var element, endTime, hours, mins, msLeft, time;
@@ -693,6 +702,7 @@ function send() {
 
             movies_desc();
 
+        }
         })
 
 

@@ -288,11 +288,6 @@ nav {
   border-color: transparent transparent transparent #4d4d4d;
 }
 
-.container {
-  width: 100%;
-  position: relative;
-}
-
 .films {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -653,28 +648,28 @@ button:hover {
 }
 
 @media screen and (max-width: 800px) {
-  #container {
+  #content_res {
     -webkit-transform: scale(0.9, 0.9);
             transform: scale(0.9, 0.9);
   }
 }
 
 @media screen and (max-width: 700px) {
-  #container {
+  #content_res {
     -webkit-transform: scale(0.7, 0.7);
             transform: scale(0.7, 0.7);
   }
 }
 
 @media screen and (max-width: 500px) {
-  #container {
+  #content_res {
     -webkit-transform: scale(0.5, 0.5);
             transform: scale(0.5, 0.5);
   }
 }
 
 @media screen and (max-width: 400px) {
-  #container {
+  #content_res {
     -webkit-transform: scale(0.4, 0.4);
             transform: scale(0.4, 0.4);
   }
